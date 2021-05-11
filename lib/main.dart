@@ -32,13 +32,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,63 +39,61 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: BlocListener<CounterCubit, CounterState>(
-        listener: (context, state) {
-          if (state.wasIncremented == true) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                duration: Duration(milliseconds: 100),
-                content: Text("Incremented"),
-              ),
-            );
-          } else if (state.wasIncremented == false) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                duration: Duration(milliseconds: 100),
-                content: Text("Decremented"),
-              ),
-            );
-          }
-        },
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                'You have pushed the button this many times:',
-              ),
-              BlocBuilder<CounterCubit, CounterState>(
-                builder: (context, state) {
-                  return Text(
-                    '${state.counterValue.toString()}',
-                    style: Theme.of(context).textTheme.headline4,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'You have pushed the button this many times:',
+            ),
+            BlocConsumer<CounterCubit, CounterState>(
+              listener: (context, state) {
+                if (state.wasIncremented == true) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      duration: Duration(milliseconds: 100),
+                      content: Text("Incremented"),
+                    ),
                   );
-                },
-              ),
-              SizedBox(
-                height: 24,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  FloatingActionButton(
-                    child: Icon(Icons.remove),
-                    tooltip: 'Decrement',
-                    onPressed: () {
-                      BlocProvider.of<CounterCubit>(context).decrement();
-                    },
-                  ),
-                  FloatingActionButton(
-                    child: Icon(Icons.add),
-                    tooltip: 'Increment',
-                    onPressed: () {
-                      BlocProvider.of<CounterCubit>(context).increment();
-                    },
-                  ),
-                ],
-              )
-            ],
-          ),
+                } else if (state.wasIncremented == false) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      duration: Duration(milliseconds: 100),
+                      content: Text("Decremented"),
+                    ),
+                  );
+                }
+              },
+              builder: (context, state) {
+                return Text(
+                  '${state.counterValue.toString()}',
+                  style: Theme.of(context).textTheme.headline4,
+                );
+              },
+            ),
+            SizedBox(
+              height: 24,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                FloatingActionButton(
+                  child: Icon(Icons.remove),
+                  tooltip: 'Decrement',
+                  onPressed: () {
+                    BlocProvider.of<CounterCubit>(context).decrement();
+                  },
+                ),
+                FloatingActionButton(
+                  child: Icon(Icons.add),
+                  tooltip: 'Increment',
+                  onPressed: () {
+                    BlocProvider.of<CounterCubit>(context).increment();
+                  },
+                ),
+              ],
+            )
+          ],
         ),
       ),
     );
