@@ -1,5 +1,5 @@
 import 'package:bloc_practice_counter/logic/cubit/counter_cubit.dart';
-import 'package:bloc_practice_counter/presentation/screens/second_screen.dart';
+import 'package:bloc_practice_counter/logic/cubit/internet_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -25,6 +25,19 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            CircleAvatar(
+              backgroundColor: Colors.indigoAccent,
+              child: BlocBuilder<InternetCubit, InternetState>(
+                builder: (context, state) {
+                  if (state is InternetConnected) {
+                    return Icon(Icons.wifi, color: Colors.green,);
+                  } else {
+                    return Icon(Icons.signal_wifi_off, color: Colors.red,);
+                  }
+                },
+              ),
+            ),
+            SizedBox(height: 20,),
             Text(
               'You have pushed the button this many times:',
             ),
@@ -49,7 +62,10 @@ class _HomeScreenState extends State<HomeScreen> {
               builder: (context, state) {
                 return Text(
                   '${state.counterValue.toString()}',
-                  style: Theme.of(context).textTheme.headline4,
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .headline4,
                 );
               },
             ),
@@ -60,6 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 FloatingActionButton(
+                  heroTag: 'one',
                   tooltip: 'Decrement',
                   onPressed: () {
                     BlocProvider.of<CounterCubit>(context).decrement();
@@ -67,6 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Icon(Icons.remove),
                 ),
                 FloatingActionButton(
+                  heroTag: 'two',
                   tooltip: 'Increment',
                   onPressed: () {
                     BlocProvider.of<CounterCubit>(context).increment();

@@ -60,6 +60,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 FloatingActionButton(
+                  heroTag: 'five',
                   tooltip: 'Decrement',
                   onPressed: () {
                     BlocProvider.of<CounterCubit>(context).decrement();
@@ -67,6 +68,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
                   child: Icon(Icons.remove),
                 ),
                 FloatingActionButton(
+                  heroTag: 'six',
                   tooltip: 'Increment',
                   onPressed: () {
                     BlocProvider.of<CounterCubit>(context).increment();
