@@ -1,7 +1,5 @@
 import 'package:bloc_practice_counter/logic/cubit/counter_cubit.dart';
-import 'package:bloc_practice_counter/logic/cubit/internet_cubit.dart';
 import 'package:bloc_test/bloc_test.dart';
-import 'package:connectivity/connectivity.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -14,7 +12,7 @@ void main() {
     // so that we can access it later on
     setUp(() {
       // Connectivity and Internet cubits added for test
-      counterCubit = CounterCubit(internetCubit: InternetCubit(connectivity: Connectivity()));
+      counterCubit = CounterCubit();
     });
 
 

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc_practice_counter/logic/cubit/counter_cubit.dart';
 import 'package:bloc_practice_counter/logic/cubit/internet_cubit.dart';
 import 'package:bloc_practice_counter/presentation/router/app_router.dart';
@@ -26,8 +24,7 @@ class MyApp extends StatelessWidget {
           create: (context) => InternetCubit(connectivity: connectivity),
         ),
         BlocProvider<CounterCubit>(
-          create: (context) => CounterCubit(
-              internetCubit: BlocProvider.of<InternetCubit>(context)),
+          create: (context) => CounterCubit(),
           child: Container(),
         )
       ],
