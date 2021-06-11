@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:bloc_practice_counter/constants/enums.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
 
 part 'internet_state.dart';
 
@@ -31,10 +30,12 @@ class InternetCubit extends Cubit<InternetState> {
     connectivityStreamSubscription =
         connectivity.onConnectivityChanged.listen((connectivityResult) {
       if (connectivityResult == ConnectivityResult.wifi) {
-        emitInternetConnected(ConnectionType.Wifi, );
+        emitInternetConnected(
+          ConnectionType.Wifi,
+        );
       } else if (connectivityResult == ConnectivityResult.mobile) {
         emitInternetConnected(ConnectionType.Mobile);
-      } else if (connectivityResult == ConnectivityResult.none){
+      } else if (connectivityResult == ConnectivityResult.none) {
         emitInternetDisconnected();
       }
     });

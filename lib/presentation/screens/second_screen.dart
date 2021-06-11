@@ -35,14 +35,14 @@ class _SecondScreenState extends State<SecondScreen> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       duration: Duration(milliseconds: 100),
-                      content: Text("Incremented"),
+                      content: Text('Incremented'),
                     ),
                   );
                 } else if (state.wasIncremented == false) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       duration: Duration(milliseconds: 100),
-                      content: Text("Decremented"),
+                      content: Text('Decremented'),
                     ),
                   );
                 }

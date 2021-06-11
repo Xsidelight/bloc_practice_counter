@@ -33,6 +33,8 @@ dependencies:
   test: ^1.16.8
   bloc_test: ^8.0.0
   connectivity: ^3.0.3
+  hydrated_bloc: ^7.0.1
+  path_provider: ^2.0.2
 
 dev_dependencies:
   flutter_test:
